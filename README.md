@@ -1,61 +1,88 @@
-🎓 Amrita Placement Insight Portal (APIP)
-![alt text](https://via.placeholder.com/800x450?text=Placement+Insight+Portal+Dashboard)
-Amrita Placement Insight Portal (APIP) is a high-performance, full-stack decision support system designed for university placement cells. The application automates the complex task of auditing student eligibility against various recruitment criteria using a unique decoupled logic engine architecture.
-🚀 Key Features
-Intelligence Engine: Integrated Python analytical engine for real-time eligibility auditing.
-Enterprise Dashboard: SaaS-inspired dark-themed UI for high-level placement overview.
-Full CRUD Operations: Manage Student Roster and Placement Drives with sophisticated validation.
-Data Visualization: Global analytics page with dynamic progress bars representing campus-wide eligibility.
-Secure Architecture: Built with PHP PDO to protect against SQL Injection.
-🛠 Tech Stack
-Layer	Technology
-Frontend	HTML5, CSS3 (Modern Flexbox/Grid), FontAwesome Icons
-Backend	PHP 8.x (PDO), Python 3.x (Analytical Engine)
-Database	MySQL (Relational Schema)
-Server	WAMP / Apache Server
-Logic Bridge	PHP-to-Python Shell Execution
-⚙️ Architecture & Workflow
-The project utilizes a 3-Tier Architecture that separates the User Interface from the Business Logic.
-Data Entry: Admins input student academic records and company recruitment criteria via PHP-driven forms.
-Storage: Data is normalized and stored across students, companies, and analytics_results tables in MySQL.
-Analytical Bridge: Upon triggering "Get Analysis," the system invokes a Python Script via shell_exec().
-Processing: The Python engine performs a backend audit, comparing the CGPA of every student against the cut-off criteria of every company.
-Visualization: The results are written back to the database, which the PHP dashboard visualizes into actionable insights and percentages.
-📸 Screenshots
-🖥 Main Dashboard
-The command center showing KPI cards and individual company eligibility insights calculated by Python.
-![alt text](dashboard_screenshot.png)
-(Replace with your image)
-👥 Student Roster
-A clean management interface to add, edit, or delete student academic profiles.
-![alt text](roster_screenshot.png)
-(Replace with your image)
-🏢 Placement Drives
-Detailed view of upcoming recruitment drives and sector-specific requirements.
-![alt text](drives_screenshot.png)
-(Replace with your image)
-📊 Global Analytics
-Campus-wide distribution of eligibility across all partner companies.
-![alt text](analytics_screenshot.png)
-(Replace with your image)
-🚀 Getting Started
-Prerequisites
-WAMP Server (Apache, MySQL, PHP)
-Python 3.x
-MySQL Connector for Python: pip install mysql-connector-python
-Installation
-Clone the repository to your WAMP www folder:
-code
-Bash
-git clone https://github.com/yourusername/amrita-placement-portal.git
-Import the amrita_placement.sql file into your phpMyAdmin.
-Configure db.php with your local database credentials.
-Update the Python absolute path in run_analysis.php to match your local Python installation.
-Launch the dashboard at http://localhost/amrita-placement-portal/dashboard.php.
-🛡 Security & Validation
-Server-Side Validation: Prevents out-of-range CGPA inputs (0.0 - 10.0).
-Data Sanitization: Trimming and floating-point conversion for all numerical inputs.
-Referential Integrity: ON DELETE CASCADE implementation ensures analytics are wiped when a company is removed.
-👨‍💻 Author
-Snehi
-Computer Science & Engineering Student
+# 🎓 Amrita Placement Insight Portal (APIP)
+
+**APIP** is a professional-grade, full-stack decision support system designed for university placement cells. The application automates student eligibility auditing for recruitment drives using a unique **Decoupled Logic Architecture**, where the web interface and analytical engine operate independently through a shared database.
+
+---
+
+## 🛠 Tech Stack
+
+| Layer | Technologies Used |
+| :--- | :--- |
+| **Frontend** | HTML5, CSS3 (Flexbox/Grid), FontAwesome, Google Fonts (Plus Jakarta Sans) |
+| **Backend** | PHP 8.x (PDO), Python 3.x |
+| **Database** | MySQL 8.x (Relational Schema) |
+| **Environment** | WAMP Server (Apache 2.4) |
+| **Integrations** | `mysql-connector-python`, PHP `shell_exec()` |
+
+---
+
+## ⚙️ Technical Workflow (System Architecture)
+
+The system follows a **Modular Full-Stack Workflow**, ensuring high performance and data integrity:
+
+1.  **Data Management (CRUD):** Administrative users input student academic profiles (CGPA, Branch) and recruitment drive criteria (Min CGPA, Industry) via PHP-driven forms.
+2.  **Server-Side Validation:** All inputs are sanitized and validated via PHP before being committed to the **MySQL Relational Database**.
+3.  **The Analytical Bridge:** Upon clicking the **"Get Analysis"** trigger, the web server invokes the **Python Script** via a shell command.
+4.  **Decoupled Logic Processing:** The Python engine connects to MySQL, performs a comparative audit of the entire student roster against all active drives, and populates the `analytics_results` table.
+5.  **Data Persistence:** Using `float` conversion and SQL `DELETE/INSERT` logic, Python ensures accurate eligibility counts without redundant data.
+6.  **Visualization:** The Dashboard fetches these calculated insights and visualizes them using CSS-driven progress bars and KPI cards.
+
+---
+
+## 🚀 Key Features
+
+- **Intelligence Engine:** Real-time background auditing powered by Python.
+- **Enterprise UI:** Modern "SaaS-style" dark-themed dashboard with a professional sidebar layout.
+- **Full CRUD Suite:** Complete Create, Read, Update, and Delete functionality for both Students and Placement Drives.
+- **Data Integrity:** Built-in validation to prevent out-of-range academic data (0.00 - 10.00 CGPA).
+- **Relational Schema:** Optimized SQL tables with `DECIMAL(4,2)` precision to support perfect 10.0 scores.
+
+---
+
+## 📸 Screenshots
+
+### 🖥 Main Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+### 👥 Student Roster
+![Roster](./screenshots/roster.png)
+
+### 🏢 Placement Drives
+![Drives](./screenshots/drives.png)
+
+### 📊 Global Analytics
+![Analytics](./screenshots/analytics.png)
+
+---
+
+## 📂 Project Structure
+
+```text
+├── db.php                # Centralized PDO Database Connection
+├── dashboard.php         # Main Visualization Command Center
+├── roster.php            # Student Management Module
+├── drives.php            # Company Recruitment Module
+├── analytics.php         # Visual Data Insight Page
+├── edit.php              # Multi-entity Modification Form
+├── placement_engine.py   # Python Analytical Logic Script
+├── run_analysis.php      # PHP-Python Integration Bridge
+├── save_data.php         # Data Insertion & Validation Logic
+├── update_data.php       # Data Modification & Validation Logic
+├── delete_data.php       # Data Removal & Integrity Logic
+├── data_schema.sql       # Complete SQL Database Export
+└── screenshots/          # Project Previews
+
+---
+
+## 🔧 Installation & Setup
+
+1.  **Clone the Repository:** `git clone https://github.com/YOUR_USERNAME/CipherVault-Pro.git`
+2.  **Web Server:** Move the files to your WAMP/XAMPP `www` folder.
+3.  **Database:** Create a database named `data_schema.sql` in phpMyAdmin. 
+4.  **Python Configuration:** Install requirements: pip install mysql-connector-python,Update the absolute Python path in run_analysis.php. Ensure Python is installed on your system and added to your **Environment Variables**.
+5.  **Run:** Access the app via `http://localhost/amrita-placement-portal/dashboard.php`.
+
+--- 
+
+**Developed by Snehitha**  
+*Full-Stack Developer*
