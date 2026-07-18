@@ -55,24 +55,6 @@ The system follows a **Modular Full-Stack Workflow**, ensuring high performance 
 
 ---
 
-## 📂 Project Structure
-
-```text
-├── db.php                # Centralized PDO Database Connection
-├── dashboard.php         # Main Visualization Command Center
-├── roster.php            # Student Management Module
-├── drives.php            # Company Recruitment Module
-├── analytics.php         # Visual Data Insight Page
-├── edit.php              # Multi-entity Modification Form
-├── placement_engine.py   # Python Analytical Logic Script
-├── run_analysis.php      # PHP-Python Integration Bridge
-├── save_data.php         # Data Insertion & Validation Logic
-├── update_data.php       # Data Modification & Validation Logic
-├── delete_data.php       # Data Removal & Integrity Logic
-├── data_schema.sql       # Complete SQL Database Export
-└── screenshots/          # Project Previews
-
----
 
 ## 🔧 Installation & Setup
 
